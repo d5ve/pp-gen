@@ -17,16 +17,19 @@ package main
 
 // TODO: Replace with the go:embed functionality once go1.16 is out.
 
-const wordlist []string {
+func getWordlist() []string {
+	return []string{
 EOF
 
+# Get just the words, without the diceroll index numbers.
 WORDS=$( awk '{print $2}' < eff_short_wordlist_2_0.txt )
 
 for w in $WORDS
 do
-    echo -e "\t"'"'$w'"', >> wordlist.go
+    echo -e "\t\t"'"'$w'"', >> wordlist.go
 done
 
 cat << EOF >> wordlist.go
+	}
 }
 EOF

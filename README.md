@@ -7,8 +7,8 @@ https://www.eff.org/files/2016/09/08/eff_short_wordlist_2_0.txt contains
 1269 memorable and distinct words for passphrases, all with unique 3-char
 prefixes and edit distances of at least 3.
 
-See https://www.eff.org/files/2016/09/08/eff_short_wordlist_2_0.txt for the
-full rationale behind the wordlist.
+See https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases for
+the full rationale behind the wordlist.
 
 Each generated passphrase is printed in full, as well as with just the unique
 3-char prefixes for a shorter string with the same entropy.

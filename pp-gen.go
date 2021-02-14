@@ -1,6 +1,7 @@
 package main
 
 /*
+
 pp-gen
 
 Use EFF's general short wordlist (with unique prefixes) to generate random
@@ -18,19 +19,22 @@ Attribution License - https://creativecommons.org/licenses/by/3.0/us/
 
 Each generated passphrase is printed in full, as well as with just the unique
 3-char prefixes for a shorter string with the same entropy.
-*/
 
-// TODO: Embed the short wordlist directly into the binary.
+Use `build_wordlist.sh` to generate `wordlist.go` which defines `getWordlist()`
+
+Run: `go run *.go`
+
+Build: `go build *.go`
+
+*/
 
 import (
 	"crypto/rand"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"math"
 	"math/big"
 	"os"
-	"strings"
 )
 
 func usage() {
@@ -60,23 +64,6 @@ func generatePassphrase(length int, wordlist []string) {
 
 }
 
-func loadWordlist() (wordlist []string) {
-	data, err := ioutil.ReadFile("eff_short_wordlist_2_0.txt")
-	if err != nil {
-		fmt.Println("File reading error", err)
-		os.Exit(1)
-	}
-
-	lines := strings.Split(string(data), "\n")
-	for _, line := range lines {
-		if len(line) > 0 {
-			f := strings.Fields(line)
-			wordlist = append(wordlist, f[1])
-		}
-	}
-	return wordlist
-}
-
 func main() {
 	flag.Usage = usage
 	length := flag.Int("len", 0, "Length of passphrase in words")
@@ -84,7 +71,7 @@ func main() {
 	flag.Parse()
 
 	if *length > 0 && *number > 0 {
-		wordlist := loadWordlist()
+		wordlist := getWordlist()
 		fmt.Printf("# Each %d-word passphrase has about %0.2f bits of entropy\n", *length, math.Log2(float64(len(wordlist)))*float64(*length))
 		for i := 0; i < *number; i++ {
 			generatePassphrase(*length, wordlist)

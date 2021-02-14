@@ -86,7 +86,7 @@ func main() {
 	if *length > 0 && *number > 0 {
 		wordlist := loadWordlist()
 		fmt.Printf("# Each %d-word passphrase has about %0.2f bits of entropy\n", *length, math.Log2(float64(len(wordlist)))*float64(*length))
-		for i := 0; i < *length; i++ {
+		for i := 0; i < *number; i++ {
 			generatePassphrase(*length, wordlist)
 		}
 	} else {

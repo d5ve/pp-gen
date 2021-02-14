@@ -13,6 +13,12 @@ the full rationale behind the wordlist.
 Each generated passphrase is printed in full, as well as with just the unique
 3-char prefixes for a shorter string with the same entropy.
 
+Use `build_wordlist.sh` to generate `wordlist.go` which defines `getWordlist()`
+
+## Run: `go run *.go`
+
+## Build: `go build *.go`
+
 # LICENCE
 
 https://www.eff.org/files/2016/09/08/eff_short_wordlist_2_0.txt is released by

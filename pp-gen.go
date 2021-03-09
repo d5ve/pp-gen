@@ -66,8 +66,7 @@ func generatePassphrase(length int, wordlist []string) {
 		if err != nil {
 			panic(err)
 		}
-		rndi := rndb.Int64()
-		pp = append(pp, wordlist[rndi])
+		pp = append(pp, wordlist[rndb.Int64()])
 	}
 	for _, word := range pp {
 		fmt.Printf("%v ", word)

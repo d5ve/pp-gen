@@ -20,11 +20,9 @@ Attribution License - https://creativecommons.org/licenses/by/3.0/us/
 Each generated passphrase is printed in full, as well as with just the unique
 3-char prefixes for a shorter string with the same entropy.
 
-Use `build_wordlist.sh` to generate `wordlist.go` which defines `getWordlist()`
+Run: `go run pp-gen.go`
 
-Run: `go run *.go`
-
-Build: `go build *.go`
+Build: `go build pp-gen.go`
 
 */
 

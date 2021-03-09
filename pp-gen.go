@@ -30,16 +30,35 @@ Build: `go build *.go`
 
 import (
 	"crypto/rand"
+	"embed"
 	"flag"
 	"fmt"
 	"math"
 	"math/big"
 	"os"
+	"strings"
 )
+
+//go:embed eff_short_wordlist_2_0.txt
+var f embed.FS
 
 func usage() {
 	fmt.Fprintln(os.Stderr, "pp-gen - generate random passphrases from EFF's general short wordlist (with unique prefixes).")
 	flag.PrintDefaults()
+}
+
+// eff_short_wordlist_2_0.txt is in "index word" format.
+func getWordlist() (words []string) {
+	data, _ := f.ReadFile("eff_short_wordlist_2_0.txt")
+	lines := strings.Split(string(data), "\n")
+	for _, line := range lines {
+		cols := strings.Fields(line)
+		if len(cols) > 1 {
+			words = append(words, cols[1])
+		}
+	}
+
+	return
 }
 
 func generatePassphrase(length int, wordlist []string) {

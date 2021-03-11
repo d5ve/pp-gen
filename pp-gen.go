@@ -45,7 +45,9 @@ func usage() {
 	flag.PrintDefaults()
 }
 
-// eff_short_wordlist_2_0.txt is in "index word" format.
+// eff_short_wordlist_2_0.txt has 1296 lines in ^index\s+word$ format.
+// From: 1111    aardvark
+// To:   6666    zucchini
 func getWordlist() (words []string) {
 	tokens := strings.Fields(string(eff_short_wordlist_2_0))
 	for i, token := range tokens {
@@ -57,15 +59,17 @@ func getWordlist() (words []string) {
 	return
 }
 
-func generatePassphrase(length int, wordlist []string) {
+// generatePassphrase() generates and prints a random passphrase of n words.
+// The passphrase is printed in full, then the unique prefixes are printed.
+func generatePassphrase(n int, words []string) {
 	var pp []string
-	numWords := len(wordlist)
-	for i := 0; i < length; i++ {
+	numWords := len(words)
+	for i := 0; i < n; i++ {
 		rndb, err := rand.Int(rand.Reader, big.NewInt(int64(numWords)))
 		if err != nil {
 			panic(err)
 		}
-		pp = append(pp, wordlist[rndb.Int64()])
+		pp = append(pp, words[rndb.Int64()])
 	}
 	for _, word := range pp {
 		fmt.Printf("%v ", word)

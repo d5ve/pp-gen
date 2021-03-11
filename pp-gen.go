@@ -47,11 +47,10 @@ func usage() {
 
 // eff_short_wordlist_2_0.txt is in "index word" format.
 func getWordlist() (words []string) {
-	lines := strings.Split(string(eff_short_wordlist_2_0), "\n")
-	for _, line := range lines {
-		cols := strings.Fields(line)
-		if len(cols) > 1 {
-			words = append(words, cols[1])
+	tokens := strings.Fields(string(eff_short_wordlist_2_0))
+	for i, token := range tokens {
+		if i%2 == 1 {
+			words = append(words, token)
 		}
 	}
 

@@ -20,7 +20,12 @@ Attribution License - https://creativecommons.org/licenses/by/3.0/us/
 Each generated passphrase is printed in full, as well as with just the unique
 3-char prefixes for a shorter string with the same entropy.
 
-Run: `go run pp-gen.go`
+Run: `go run pp-gen.go -len= -num=`
+
+	go run pp-gen.go -len 6 -num 2
+	# Each 6-word passphrase has about 62.04 bits of entropy
+	krypton gothic bouquet vivacious fountain scythe :: kry got bou viv fou scy
+	already jiffy clubhouse doll garlic podiatrist :: alr jif clu dol gar pod
 
 Build: `go build pp-gen.go`
 
